@@ -1,0 +1,58 @@
+{% extends 'step1/layout.html' %}
+
+
+
+{% block body %}
+
+
+{% if user == venue.manager %}
+
+<br/>
+<h1>Update EVENT</h1>
+Logged In User: {{ user }}
+
+
+
+<br/>
+Event Manager: {{venue.manager}}
+
+<br/>
+
+
+    <h1><b>Event Name:</b> <i>{{event.name}}</i></h1>
+    <br/>
+    <form action="" method=POST>
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        
+        <br/>
+        <input type="submit" value="Update"
+        class="btn btn-secondary">
+
+<br/>
+<br/>
+Logged In User: {{ user }}
+
+
+
+<br/>
+Event Manager: {{venue.manager}}
+
+
+{% else %}
+
+    <h2>Access Denied</h2>
+<br/>
+<br/>
+Logged In User: {{ user }}
+
+
+
+<br/>
+Event Manager: {{venue.manager}}
+
+{% endif %}
+
+
+{% endblock %}

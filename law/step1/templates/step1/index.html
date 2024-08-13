@@ -1,0 +1,35 @@
+{% extends 'step1/layout.html' %}
+
+
+
+{% block body %}
+
+
+
+<h1>The month is {{ month }} and the month number is {{ month_number }}of {{ year }}</h1>
+
+    <center>{{ cal|safe }}</center>
+
+    <br/><br/>
+<center>
+
+    <h3>Events This Months</h3>
+
+    {% if event_list %}
+
+        {% for event in event_list %}
+            {{ event }} - {{event.event_date}}<br/>
+        {% endfor %}
+
+    {% else %}
+
+        sorry there is no events
+
+    {% endif %}
+
+
+</center>
+
+
+
+{% endblock %}

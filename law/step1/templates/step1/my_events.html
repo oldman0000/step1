@@ -1,0 +1,18 @@
+{% extends 'step1/layout.html' %}
+
+
+
+{% block body %}
+
+
+
+    <h2>My Events</h2>
+    <br/>
+        
+
+        {% for event in events %}
+            {{ event.name }}<br/>
+        {% endfor %}
+
+    
+{% endblock %}

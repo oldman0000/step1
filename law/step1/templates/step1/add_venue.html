@@ -1,0 +1,53 @@
+{% extends 'step1/layout.html' %}
+
+
+
+{% block body %}
+
+
+
+
+
+{% if user.is_authenticated %}
+
+    <center>
+
+    {{ user.id}}
+
+        <h1>Add Venue To Database</h1>
+
+        <br/><br/>
+        {% if submitted %}
+
+            <h1>Your Venue Was Submitted Successfully!!</h1>
+
+        {% else %}
+
+       
+            
+            <form action="" method=POST enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+
+                <br/>
+                <input type="submit" value="Submit" class="btn btn-success">
+            <form>
+            
+        
+        {% endif %}
+    </center>
+   
+{% else %}
+
+     <h1>Sorry you must be logined </h1>
+
+    <a href="{% url 'login_user'%}">Login</a>
+
+{% endif %}
+ 
+   
+   
+    
+{% endblock %}

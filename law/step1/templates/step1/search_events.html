@@ -1,0 +1,92 @@
+{% extends 'step1/layout.html' %}
+
+
+
+{% block body %}
+
+ <h1>You Searched For {{ searched }} </h1>
+
+<br/>
+
+ <div class="card">
+     <div class="card-header">
+         {{ event }}
+        </div>
+                            
+    <div class="card-body">
+  
+
+     <form method=POST action="{% url 'step1:search_events'%}" > 
+      
+      
+      
+        {% csrf_token %}
+
+          
+          
+          <input class="form-control me-2" type="search" placeholder="Search Events" aria-label="Search" name="searched"><br/>
+          <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </form>
+    </div>
+    </div>
+
+            {% if searched %}
+            
+            <br/>
+               
+                
+
+                {% for event in events %}
+
+                 
+                        <div class="card">
+                                <div class="card-header">
+                                        {{ event }}
+                                </div>
+                            
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ event.venue }}</h5>
+
+                                        <p class="card-text"> 
+                                        
+                                        
+                                        
+
+                                                
+
+                                            <ul>
+                                                    <li> <b>Date:</b> {{ event.event_date }} </li>
+                                                    <li> <b>Venue:</b> {{ event.venue }} </li>
+                                                    <li> <b>Manager:</b> {{ event.manager }} </li>
+                                                    <li> <b>Description:</b> {{ event.description }} </li>
+
+                                                    {% for user in event.attendees.all %}
+                                                        <li> <b>Attendees:</b> {{ user }} </li>
+                                                    {% endfor%}
+                                                
+                                            </ul>
+                                            
+                                        
+                                        </p>
+                                       
+
+                                    
+                                </div>
+                        </div>
+                        <br/>
+                             
+                       
+            
+                {% endfor %}
+
+            {% else %}
+
+                <h1>Hey! You Forgot To Search For A Venue </h1>
+
+            {% endif %}
+
+
+     
+<br/> 
+
+{% endblock %}

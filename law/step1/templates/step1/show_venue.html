@@ -1,0 +1,57 @@
+{% extends 'step1/layout.html' %}
+
+
+
+{% block body %}
+
+
+
+
+
+    <h1>venue:  </h1>
+      
+
+       <div class="card">
+    <div class="card-header">
+        {{ venue.name }}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ event.venue }}</h5>
+
+        <p class="card-text"> 
+        
+        
+        
+
+                
+
+                <ul>
+                        
+                        <li>{{ venue.address }}</li>
+                        <li>{{ venue.zip_code }}</li>
+                        <li>Owner: {{venue_owner}}</li>
+                </ul>
+
+
+                <br/>
+
+                {% if venue.venue_image %}
+
+                  <center> <img src=" {{ venue.venue_image.url }}" width="500"></center>
+
+                {% endif %}
+            
+        
+        </p>
+        
+    </div>
+    </div>
+
+
+<br>
+
+
+       
+
+    
+{% endblock %}

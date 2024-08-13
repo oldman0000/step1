@@ -1,0 +1,18 @@
+{% extends 'step1/layout.html' %}
+
+
+
+{% block body %}
+
+    <h1><b>Venue Name:</b> <i>{{venue.name}}</i></h1>
+    <br/>
+    <form action="" method=POST enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        
+        <br/>
+        <input type="submit" value="Update"
+        class="btn btn-secondary">
+
+{% endblock %}

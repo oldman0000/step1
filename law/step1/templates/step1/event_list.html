@@ -1,0 +1,80 @@
+{% extends 'step1/layout.html' %}
+
+
+
+{% block body %}
+
+
+
+<br>
+
+{% for event in event_list %}
+
+{% if event.approved %}
+
+    <div class="card">
+    <div class="card-header">
+        {{ event }}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ event.venue }}</h5>
+
+        <p class="card-text"> 
+        
+        
+        
+
+                
+
+                <ul>
+                    <li> <b>Date:</b> {{ event.event_date }} </li>
+                    <li> <b>Days Till Event:</b> {{ event.Days_till }}</li>                    <li> <b>Venue:</b> {{ event.venue }} </li>
+                    <li> <b>Manager:</b> {{ event.manager }} </li>
+                    <li> <b>Description:</b> {{ event.description }} </li>
+                    <li><b>Approved:</b> {{ event.approved }}</li>
+
+                    {% for user in event.attendees.all %}
+                        <li> <b>Attendees:</b> {{ user }} </li>
+                    {% endfor%}
+            </ul>
+            
+        
+        </p>
+
+
+        {% if user.is_authenticated %}
+
+            {% if user == event.manager %}
+
+
+
+
+                <div class="card-footer text-body-secondary">
+                    <a href="{% url 'step1:update_event' event.id %}" class="btn btn-outline-secondary btn-sm">update</a>
+
+                    <a href="{% url 'step1:delete_event' event.id %}" class="btn btn-outline-danger btn-sm">delete</a>
+
+                </div>
+            
+            {% endif %}
+
+
+
+        {% endif %}
+
+
+
+    </div>
+    </div>
+
+
+<br>
+
+{% endif %}
+   
+{% endfor %}
+ 
+   
+   
+    
+{% endblock %}

@@ -1,0 +1,129 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'step1:index' %}">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+       <li class="nav-item">
+          <a class="nav-link" href="{% url 'step1:event_list'%}">Event_list</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'step1:list_venue'%}">venue</a>
+        </li>
+ <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ADD
+          </a>
+
+
+
+
+         <ul class="dropdown-menu">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'step1:add_venue'%}">ADD Venue</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'step1:add_event'%}">ADD Event</a>
+            </li>
+
+
+           <li class="nav-item">
+              <a class="nav-link" href="{% url 'step1:my_events'%}">My Event</a>
+            </li>
+
+          </ul>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Download
+          </a>
+
+         <ul class="dropdown-menu">
+             <li class="nav-item">
+              <a class="dropdown-item" href="{% url 'step1:venue_text'%}">Venue_Text</a>
+            </li>
+            <li class="nav-item">
+              <a class="dropdown-item" href="{% url 'step1:venue_csv'%}">Venue_CSV</a>
+            </li>
+          
+
+            <li class="nav-item">
+              <a class="dropdown-item" href="{% url 'step1:venue_pdf'%}">Venue_pdf</a>
+            </li>
+
+             
+
+
+
+          </ul>
+
+      
+
+
+      {% if user.is_authenticated %}
+
+
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout_user'%}">logout</a>
+        </li>
+
+
+
+      {% else %}
+
+
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+        </li>
+       
+
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login_user'%}">login</a>
+        </li>
+       
+    
+
+      {% endif %}
+
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'step1:search_events'%}">search_events</a>
+        </li>
+
+
+      {% if user.is_superuser %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'step1:admin_approvel' %}">Admin Approvel</a>
+        </li>
+
+
+
+      {% endif %}
+
+
+      </ul>
+
+
+      <form class="d-flex" method=POST action="{% url 'step1:search_venues'%}" > 
+      
+      
+      
+        {% csrf_token %}
+
+          
+          
+          <input class="form-control me-2" type="search" placeholder="Search Venue" aria-label="Search" name="searched">
+          <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
